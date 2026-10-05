@@ -63,12 +63,49 @@
         padding: 25px;
         margin-top: 40px;
     }
+
+    header form {
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    header input {
+        width: 70%;
+        max-width: 500px;
+        padding: 14px;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+    }
+
+    header button {
+        padding: 14px 20px;
+        border: none;
+        border-radius: 10px;
+        background: #2563eb;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    header button:hover {
+        opacity: 0.85;
+    }
+
 </style>
 <body>
 
     <header>
         <h1>Adams Tawiah</h1>
         <p>BECE Study Hub</p>
+
+        <form action="https://www.google.com/search" method="GET" target="_blank">
+            <input type="search" name="q" placeholder="Search the Internet..." required>
+            <button type="submit">Search</button>
+        </form>
     </header>
 
     <main>
