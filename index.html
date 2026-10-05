@@ -164,6 +164,77 @@
         font-weight: bold;
         margin-top: 15px;
     }
+
+    .study-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .study-buttons button {
+        flex: 1 1 180px;
+        padding: 15px;
+        border: none;
+        border-radius: 10px;
+        background: #2563eb;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .study-buttons button:hover {
+        opacity: 0.85;
+    }
+
+    #subjectMessage {
+        margin-top: 18px;
+        font-weight: bold;
+    }
+
+
+    .subject-content {
+        margin-top: 20px;
+        padding: 20px;
+        background: #f8fafc;
+        border-radius: 12px;
+        text-align: left;
+    }
+
+    .subject-content h3 {
+        text-align: center;
+        font-size: 24px;
+    }
+
+    .subject-content h4 {
+        margin-bottom: 5px;
+    }
+
+    .practice-button {
+        padding: 12px 18px;
+        border: none;
+        border-radius: 10px;
+        background: #2563eb;
+        color: white;
+        font-size: 15px;
+        cursor: pointer;
+    }
+
+
+    .subject-content pre {
+        background: #172033;
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        overflow-x: auto;
+        text-align: left;
+    }
+
+    .subject-content code {
+        font-family: monospace;
+        font-size: 15px;
+    }
+
 </style>
 
 </style>
@@ -267,6 +338,23 @@
             </p>
         </section>
 
+
+        <section>
+            <h2>📚 Study Materials</h2>
+
+            <p>Choose a subject to start learning.</p>
+
+            <div class="study-buttons">
+                <button onclick="showSubject('Mathematics')">➗ Mathematics</button>
+                <button onclick="showSubject('English Language')">📖 English Language</button>
+                <button onclick="showSubject('Integrated Science')">🔬 Integrated Science</button>
+                <button onclick="showSubject('Social Studies')">🌍 Social Studies</button>
+                <button onclick="showSubject('Computing')">💻 Computing</button>
+            </div>
+
+            <p id="subjectMessage"></p>
+        </section>
+
         <section class="math-game">
             <h2>🧠 Math Speed Challenge</h2>
 
@@ -334,6 +422,212 @@
     <footer>
         <p>© 2026 Adams Tawiah</p>
     </footer>
+
+
+<script>
+function showSubject(subject) {
+    const message = document.getElementById("subjectMessage");
+
+    if (subject === "Mathematics") {
+        message.innerHTML = `
+            <div class="subject-content">
+                <h3>➗ Mathematics</h3>
+
+                <h4>📐 Useful Formula</h4>
+                <p><strong>Area of a rectangle = length × width</strong></p>
+
+                <h4>✏️ Example</h4>
+                <p>
+                    If a rectangle has a length of 8 cm and a width of 5 cm:
+                </p>
+                <p><strong>Area = 8 × 5 = 40 cm²</strong></p>
+
+                <h4>🧠 Practice</h4>
+                <p>
+                    A rectangle has a length of 12 cm and a width of 4 cm.
+                    What is its area?
+                </p>
+
+                <button class="practice-button"
+                    onclick="alert('Answer: 48 cm²')">
+                    ✅ Show Answer
+                </button>
+            </div>
+        `;
+    } else if (subject === "English Language") {
+        message.innerHTML = `
+            <div class="subject-content">
+                <h3>📖 English Language</h3>
+
+                <h4>🧠 Grammar: Parts of Speech</h4>
+                <p>
+                    Parts of speech are groups that describe how words are
+                    used in sentences.
+                </p>
+
+                <p>
+                    <strong>Noun:</strong> A word that names a person, place,
+                    animal, or thing.
+                </p>
+
+                <p>
+                    <strong>Verb:</strong> A word that shows an action or state.
+                </p>
+
+                <p>
+                    <strong>Adjective:</strong> A word that describes a noun.
+                </p>
+
+                <h4>✏️ Example</h4>
+                <p>
+                    In the sentence:
+                    <strong>"The clever boy solved the difficult question."</strong>
+                </p>
+
+                <p>
+                    <strong>boy</strong> is a noun,
+                    <strong>clever</strong> is an adjective,
+                    and <strong>solved</strong> is a verb.
+                </p>
+
+                <h4>🧠 Practice</h4>
+                <p>
+                    Identify the verb in this sentence:
+                    <strong>"Ama reads a book every evening."</strong>
+                </p>
+
+                <button class="practice-button"
+                    onclick="alert('Answer: reads')">
+                    ✅ Show Answer
+                </button>
+            </div>
+        `;
+    } else if (subject === "Integrated Science") {
+        message.innerHTML = `
+            <div class="subject-content">
+                <h3>🔬 Integrated Science</h3>
+
+                <h4>🌱 Photosynthesis</h4>
+                <p>
+                    Photosynthesis is the process by which green plants make
+                    their own food using sunlight, water, and carbon dioxide.
+                </p>
+
+                <h4>☀️ What Plants Need</h4>
+                <ul>
+                    <li>Sunlight</li>
+                    <li>Water</li>
+                    <li>Carbon dioxide</li>
+                    <li>Chlorophyll</li>
+                </ul>
+
+                <h4>✏️ Example</h4>
+                <p>
+                    A plant placed in sunlight can use light energy to help
+                    produce food in its leaves.
+                </p>
+
+                <h4>🧠 Practice</h4>
+                <p>
+                    Which gas do green plants take in during photosynthesis?
+                </p>
+
+                <button class="practice-button"
+                    onclick="alert('Answer: Carbon dioxide (CO₂)')">
+                    ✅ Show Answer
+                </button>
+            </div>
+        `;
+    } else if (subject === "Social Studies") {
+        message.innerHTML = `
+            <div class="subject-content">
+                <h3>🌍 Social Studies</h3>
+
+                <h4>🏘️ The Community</h4>
+                <p>
+                    A community is a group of people who live in the same
+                    area and share common facilities, activities, and
+                    responsibilities.
+                </p>
+
+                <h4>🤝 Responsibilities of Community Members</h4>
+                <ul>
+                    <li>Keeping the environment clean</li>
+                    <li>Respecting other people</li>
+                    <li>Protecting public property</li>
+                    <li>Following community rules</li>
+                </ul>
+
+                <h4>✏️ Example</h4>
+                <p>
+                    People can help their community by keeping public places
+                    clean and taking care of shared facilities.
+                </p>
+
+                <h4>🧠 Practice</h4>
+                <p>
+                    Give one responsibility of a good community member.
+                </p>
+
+                <button class="practice-button"
+                    onclick="alert('Answer: One example is keeping the community clean.')">
+                    ✅ Show Answer
+                </button>
+            </div>
+        `;
+    } else if (subject === "Computing") {
+        message.innerHTML = `
+            <div class="subject-content">
+                <h3>💻 Programming Basics</h3>
+
+                <h4>🧠 What Is Programming?</h4>
+                <p>
+                    Programming is the process of writing instructions that
+                    tell a computer what to do.
+                </p>
+
+                <h4>🧩 What Is Code?</h4>
+                <p>
+                    Code is a set of instructions written in a programming
+                    language. Computers follow these instructions to perform
+                    tasks.
+                </p>
+
+                <h4>🐍 Simple Python Example</h4>
+
+                <pre><code>name = "Adams"
+print("Hello", name)</code></pre>
+
+                <p>
+                    This program stores a name in a variable and then prints
+                    a greeting.
+                </p>
+
+                <h4>✏️ Example</h4>
+                <p>
+                    If we write
+                    <strong>age = 13</strong>,
+                    the variable <strong>age</strong> stores the number 13.
+                </p>
+
+                <h4>🧠 Practice</h4>
+                <p>
+                    Which Python command is commonly used to display text
+                    on the screen?
+                </p>
+
+                <button class="practice-button"
+                    onclick="alert('Answer: print()')">
+                    ✅ Show Answer
+                </button>
+            </div>
+        `;
+    } else {
+        message.innerHTML =
+            "📚 " + subject + " materials are coming soon!";
+    }
+}
+</script>
 
 </body>
 </html>
