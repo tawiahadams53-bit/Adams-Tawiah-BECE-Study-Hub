@@ -1,1169 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="google-site-verification" content="obCReFE0CG2mPpr1aOuNNF1jBXVEJFVxVfX_14xqj8o" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adams Hub</title>
+
+    <title>Adams Tawiah | BECE Study Hub</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 25px 15px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        header p {
+            margin: 8px 0 18px;
+            color: #d1d5db;
+        }
+
+        .search-box {
+            display: flex;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px 0 0 8px;
+            font-size: 16px;
+        }
+
+        .search-box button {
+            padding: 12px 18px;
+            border: none;
+            border-radius: 0 8px 8px 0;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+        }
+
+        .top-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+
+        .top-buttons button {
+            padding: 9px 13px;
+            border: none;
+            border-radius: 8px;
+            background: #374151;
+            color: white;
+            cursor: pointer;
+        }
+
+        .top-buttons button:hover {
+            background: #4b5563;
+        }
+
+        main {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px 15px;
+        }
+
+        section {
+            background: white;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        section h2 {
+            margin-top: 0;
+        }
+
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        .subject {
+            padding: 18px;
+            background: #eef2ff;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .math-note {
+            background: #f8fafc;
+            padding: 15px;
+            border-left: 4px solid #2563eb;
+            margin-top: 12px;
+            border-radius: 6px;
+        }
+
+        .math-game {
+            text-align: center;
+        }
+
+        #game-question {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        #game-answer {
+            padding: 10px;
+            width: 150px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .game-button {
+            padding: 10px 15px;
+            margin-left: 5px;
+            border: none;
+            border-radius: 6px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+        }
+
+        #game-result {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            background: #111827;
+            color: white;
+        }
+
+        .info-panel {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .panel-content {
+            background: white;
+            width: 100%;
+            max-width: 400px;
+            padding: 25px;
+            border-radius: 15px;
+            position: relative;
+            color: #222;
+        }
+
+        .close-panel {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border: none;
+            background: #222;
+            color: white;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 500px) {
+            header h1 {
+                font-size: 25px;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-box input,
+            .search-box button {
+                border-radius: 8px;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
 </head>
-<style>
-    * {
-        box-sizing: border-box;
-    }
 
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #f1f5f9;
-        color: #172033;
-    }
-
-    header {
-        background: #0f172a;
-        color: white;
-        text-align: center;
-        padding: 45px 20px;
-    }
-
-    header h1 {
-        margin: 0;
-        font-size: 38px;
-    }
-
-    header p {
-        font-size: 20px;
-        margin-top: 10px;
-    }
-
-    main {
-        max-width: 900px;
-        margin: 30px auto;
-        padding: 0 20px;
-    }
-
-    section {
-        background: white;
-        margin-bottom: 25px;
-        padding: 25px;
-        border-radius: 15px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
-
-    h2 {
-        color: #2563eb;
-    }
-
-    li {
-        margin: 12px 0;
-    }
-
-    footer {
-        background: #0f172a;
-        color: white;
-        text-align: center;
-        padding: 25px;
-        margin-top: 40px;
-    }
-
-    header form {
-        margin-top: 25px;
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-        flex-wrap: wrap;
-    }
-
-    header input {
-        width: 70%;
-        max-width: 500px;
-        padding: 14px;
-        border: none;
-        border-radius: 10px;
-        font-size: 16px;
-    }
-
-    header button {
-        padding: 14px 20px;
-        border: none;
-        border-radius: 10px;
-        background: #2563eb;
-        color: white;
-        font-size: 16px;
-        cursor: pointer;
-    }
-
-    header button:hover {
-        opacity: 0.85;
-    }
-
-
-<style>
-    .math-game {
-        text-align: center;
-    }
-
-    .math-stats {
-        display: flex;
-        justify-content: center;
-        gap: 12px;
-        flex-wrap: wrap;
-        margin: 20px 0;
-    }
-
-    .math-stat {
-        background: #f1f5f9;
-        padding: 12px 16px;
-        border-radius: 12px;
-        min-width: 90px;
-    }
-
-    .math-stat strong {
-        display: block;
-        font-size: 13px;
-        color: #64748b;
-    }
-
-    .math-stat span {
-        font-size: 20px;
-        font-weight: bold;
-    }
-
-    #question {
-        font-size: 32px;
-        margin: 25px 0;
-        color: #172033;
-    }
-
-    #answer {
-        width: 100%;
-        max-width: 300px;
-        padding: 15px;
-        font-size: 20px;
-        text-align: center;
-        border: 2px solid #cbd5e1;
-        border-radius: 12px;
-        margin-bottom: 15px;
-    }
-
-    .game-button {
-        padding: 13px 20px;
-        margin: 5px;
-        border: none;
-        border-radius: 10px;
-        background: #2563eb;
-        color: white;
-        font-size: 16px;
-        cursor: pointer;
-    }
-
-    .game-button:hover {
-        opacity: 0.85;
-    }
-
-    #result {
-        min-height: 25px;
-        font-weight: bold;
-        margin-top: 15px;
-    }
-
-    .study-buttons {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 20px;
-    }
-
-    .study-buttons button {
-        flex: 1 1 180px;
-        padding: 15px;
-        border: none;
-        border-radius: 10px;
-        background: #2563eb;
-        color: white;
-        font-size: 16px;
-        cursor: pointer;
-    }
-
-    .study-buttons button:hover {
-        opacity: 0.85;
-    }
-
-    #subjectMessage {
-        margin-top: 18px;
-        font-weight: bold;
-    }
-
-
-    .subject-content {
-        margin-top: 20px;
-        padding: 20px;
-        background: #f8fafc;
-        border-radius: 12px;
-        text-align: left;
-    }
-
-    .subject-content h3 {
-        text-align: center;
-        font-size: 24px;
-    }
-
-    .subject-content h4 {
-        margin-bottom: 5px;
-    }
-
-    .practice-button {
-        padding: 12px 18px;
-        border: none;
-        border-radius: 10px;
-        background: #2563eb;
-        color: white;
-        font-size: 15px;
-        cursor: pointer;
-    }
-
-
-    .subject-content pre {
-        background: #172033;
-        color: white;
-        padding: 15px;
-        border-radius: 10px;
-        overflow-x: auto;
-        text-align: left;
-    }
-
-    .subject-content code {
-        font-family: monospace;
-        font-size: 15px;
-    }
-
-
-    .math-diagram {
-        margin: 20px 0;
-        padding: 15px;
-        background: #f8fafc;
-        border-radius: 12px;
-        text-align: center;
-    }
-
-    .math-diagram svg {
-        width: 100%;
-        max-width: 500px;
-        height: auto;
-    }
-
-
-    .science-diagram {
-        margin: 20px 0;
-        padding: 15px;
-        background: #f0fdf4;
-        border-radius: 12px;
-        text-align: center;
-    }
-
-    .science-diagram svg {
-        width: 100%;
-        max-width: 600px;
-        height: auto;
-    }
-
-
-    .programming-diagram {
-        margin: 20px 0;
-        padding: 15px;
-        background: #f8fafc;
-        border-radius: 12px;
-        text-align: center;
-        overflow-x: auto;
-    }
-
-    .programming-diagram svg {
-        width: 100%;
-        min-width: 600px;
-        max-width: 700px;
-        height: auto;
-    }
-
-
-    .social-diagram {
-        margin: 20px 0;
-        padding: 15px;
-        background: #f8fafc;
-        border-radius: 12px;
-        text-align: center;
-        overflow-x: auto;
-    }
-
-    .social-diagram svg {
-        width: 100%;
-        max-width: 600px;
-        height: auto;
-    }
-
-</style>
-
-</style>
 <body>
 
-    <header>
-        <h1>Adams Hub</h1>
-        <p>Study Hub</p>
+<header>
+    <h1>Adams Hub</h1>
+    <p>BECE Study Hub</p>
 
-        <form action="https://www.google.com/search" method="GET" target="_blank">
-            <input type="search" name="q" placeholder="Search the Internet..." required>
-            <button type="submit">Search</button>
-        </form>
-    </header>
+    <form class="search-box"
+          action="https://www.google.com/search"
+          method="GET"
+          target="_blank">
 
-    <main>
+        <input
+            type="search"
+            name="q"
+            placeholder="Search the Internet..."
+            required>
 
-        <section>
-            <h2>Welcome</h2>
-            <p>
-                Welcome to the Adams Hub Study Hub.
-                Learn, practise and prepare for your BECE.
-            </p>
-        </section>
+        <button type="submit">Search</button>
+    </form>
 
-        <section>
-            <h2>Subjects</h2>
+    <div class="top-buttons">
 
-            <ul>
-                <li>Mathematics</li>
-                <li>English Language</li>
-                <li>Integrated Science</li>
-                <li>Social Studies</li>
-                <li>Computing</li>
-            </ul>
-        </section>
+        <button onclick="showPanel('developer-panel')">
+            🧑‍💻 Developer
+        </button>
 
-        <section>
-            <h2>Study Materials</h2>
+        <button onclick="showPanel('about-panel')">
+            ℹ️ About
+        </button>
 
-            <p>📚 Notes</p>
-            <p>📝 Practice Questions</p>
-            <p>🎯 BECE Preparation</p>
-        </section>
+        <button onclick="scrollToSubjects()">
+            📚 Subjects
+        </button>
 
+        <button onclick="showPanel('settings-panel')">
+            ⚙️ Settings
+        </button>
 
-        <section>
-            <h2>📐 How to Learn Mathematics</h2>
+    </div>
+</header>
 
-            <p>
-                Mathematics becomes easier when you understand the ideas,
-                practise regularly, and learn from your mistakes.
-            </p>
+<main>
 
-            <h3>🧠 1. Understand Before Memorising</h3>
-            <p>
-                Try to understand why a formula or method works instead of
-                only memorising the answer. Ask yourself what the question
-                is really asking.
-            </p>
-
-            <h3>✏️ 2. Practise Regularly</h3>
-            <p>
-                Practise a few mathematics questions every day. Start with
-                questions you understand and gradually move to more difficult
-                ones.
-            </p>
-
-            <h3>🧩 3. Break Word Problems Into Steps</h3>
-            <p>
-                Read the question carefully. Identify what is given, what you
-                need to find, and which operation or formula you should use.
-                Then solve it step by step.
-            </p>
-
-            <h3>❌ 4. Learn From Your Mistakes</h3>
-            <p>
-                Getting an answer wrong is part of learning. Check where you
-                made the mistake, understand the correct method, and try a
-                similar question again.
-            </p>
-
-            <h3>⏱️ 5. Practise Under Time</h3>
-            <p>
-                Once you understand a topic, practise some questions with a
-                timer. This can help you become faster and more confident
-                during examinations.
-            </p>
-
-            <h3>🔁 6. Review Regularly</h3>
-            <p>
-                Do not wait until examination time to revise. Review older
-                topics regularly so that the knowledge stays fresh.
-            </p>
-
-            <h3>🎯 Remember</h3>
-            <p>
-                You do not have to understand everything immediately.
-                Keep practising, ask for help when you are stuck, and
-                improve one topic at a time.
-            </p>
-        </section>
-
-
-        <section>
-            <h2>📚 Study Materials</h2>
-
-            <p>Choose a subject to start learning.</p>
-
-            <div class="study-buttons">
-                <button onclick="showSubject('Mathematics')">➗ Mathematics</button>
-                <button onclick="showSubject('English Language')">📖 English Language</button>
-                <button onclick="showSubject('Integrated Science')">🔬 Integrated Science</button>
-                <button onclick="showSubject('Social Studies')">🌍 Social Studies</button>
-                <button onclick="showSubject('Computing')">💻 Computing</button>
-            </div>
-
-            <p id="subjectMessage"></p>
-        </section>
-
-        <section class="math-game">
-            <h2>🧠 Math Speed Challenge</h2>
-
-            <p>Test your maths skills and see how many questions you can answer!</p>
-
-            <div class="math-stats">
-                <div class="math-stat">
-                    <strong>TIME</strong>
-                    <span id="time">30</span>
-                </div>
-
-                <div class="math-stat">
-                    <strong>SCORE</strong>
-                    <span id="score">0</span>
-                </div>
-
-                <div class="math-stat">
-                    <strong>HIGH SCORE</strong>
-                    <span id="highScore">0</span>
-                </div>
-
-                <div class="math-stat">
-                    <strong>LIVES</strong>
-                    <span id="lives">❤️❤️❤️</span>
-                </div>
-            </div>
-
-            <h3 id="question">Press Start to begin!</h3>
-
-            <input type="number" id="answer" placeholder="Your answer">
-
-            <button class="game-button" onclick="startGame()">🎮 Start Game</button>
-            <button class="game-button" onclick="checkAnswer()">✅ Answer</button>
-
-            <p id="result"></p>
-        </section>
-
-        <section>
-            <h2>👨🏽‍💻 About the Developer</h2>
-
-            <p>
-                Hi, my name is <strong>Adams Hub</strong>.
-            </p>
-
-            <p>
-                I'm a young programmer who is working hard to become
-                a professional programmer one day. This website is
-                part of my journey as I learn, build, and improve
-                my programming skills.
-            </p>
-
-            <p>
-                If you experience any bugs 🐛, errors, or other issues
-                while using this website, kindly report them to:
-            </p>
-
-            <p>
-                📞 <strong>+233 549 830 320</strong><br>
-                📧 <strong>tawiahadams53@gmail.com</strong><br>
-                📧 <strong>adamstawiah29@gmail.com</strong>
-            </p>
-        </section>
-    </main>
-
-    <footer>
-        <p>© 2026 Adams Hub</p>
-    </footer>
-
-
-<script>
-function showSubject(subject) {
-    const message = document.getElementById("subjectMessage");
-
-    if (subject === "Mathematics") {
-        message.innerHTML = `
-            <div class="subject-content">
-                <h3>➗ Mathematics</h3>
-
-                
-<div class="math-diagram">
-    <h4>📐 Triangle Area Diagram</h4>
-
-    <svg viewBox="0 0 500 300" role="img"
-         aria-label="Triangle showing base and height">
-        <polygon points="100,240 400,240 250,60"
-                 fill="#dbeafe"
-                 stroke="#2563eb"
-                 stroke-width="4"/>
-
-        <line x1="250" y1="60" x2="250" y2="240"
-              stroke="#dc2626"
-              stroke-width="3"
-              stroke-dasharray="8 6"/>
-
-        <text x="250" y="270"
-              text-anchor="middle"
-              font-size="20">
-            Base
-        </text>
-
-        <text x="270" y="155"
-              font-size="20">
-            Height
-        </text>
-
-        <text x="250" y="35"
-              text-anchor="middle"
-              font-size="20"
-              font-weight="bold">
-            Triangle
-        </text>
-    </svg>
-
-    <p>
-        <strong>Area = ½ × base × height</strong>
-    </p>
-</div>
-
-<h4>📐 Useful Formula</h4>
-                <p><strong>Area of a rectangle = length × width</strong></p>
-
-                <h4>✏️ Example</h4>
-                <p>
-                    If a rectangle has a length of 8 cm and a width of 5 cm:
-                </p>
-                <p><strong>Area = 8 × 5 = 40 cm²</strong></p>
-
-                <h4>🧠 Practice</h4>
-                <p>
-                    A rectangle has a length of 12 cm and a width of 4 cm.
-                    What is its area?
-                </p>
-
-                <button class="practice-button"
-                    onclick="alert('Answer: 48 cm²')">
-                    ✅ Show Answer
-                </button>
-            </div>
-        `;
-    } else if (subject === "English Language") {
-        message.innerHTML = `
-            <div class="subject-content">
-                <h3>📖 English Language</h3>
-
-                <h4>🧠 Grammar: Parts of Speech</h4>
-                <p>
-                    Parts of speech are groups that describe how words are
-                    used in sentences.
-                </p>
-
-                <p>
-                    <strong>Noun:</strong> A word that names a person, place,
-                    animal, or thing.
-                </p>
-
-                <p>
-                    <strong>Verb:</strong> A word that shows an action or state.
-                </p>
-
-                <p>
-                    <strong>Adjective:</strong> A word that describes a noun.
-                </p>
-
-                <h4>✏️ Example</h4>
-                <p>
-                    In the sentence:
-                    <strong>"The clever boy solved the difficult question."</strong>
-                </p>
-
-                <p>
-                    <strong>boy</strong> is a noun,
-                    <strong>clever</strong> is an adjective,
-                    and <strong>solved</strong> is a verb.
-                </p>
-
-                <h4>🧠 Practice</h4>
-                <p>
-                    Identify the verb in this sentence:
-                    <strong>"Ama reads a book every evening."</strong>
-                </p>
-
-                <button class="practice-button"
-                    onclick="alert('Answer: reads')">
-                    ✅ Show Answer
-                </button>
-            </div>
-        `;
-    } else if (subject === "Integrated Science") {
-        message.innerHTML = `
-            <div class="subject-content">
-                <h3>🔬 Integrated Science</h3>
-
-                
-<div class="science-diagram">
-    <h4>🌱 Photosynthesis Diagram</h4>
-
-    <svg viewBox="0 0 600 330" role="img"
-         aria-label="Photosynthesis diagram showing sunlight, water, carbon dioxide, food and oxygen">
-
-        <circle cx="90" cy="70" r="38"
-                fill="#facc15"
-                stroke="#ca8a04"
-                stroke-width="3"/>
-
-        <text x="90" y="125"
-              text-anchor="middle"
-              font-size="18">
-            Sunlight ☀️
-        </text>
-
-        <line x1="125" y1="80" x2="225" y2="130"
-              stroke="#ca8a04"
-              stroke-width="4"
-              marker-end="url(#arrow)"/>
-
-        <ellipse cx="300" cy="160" rx="90" ry="55"
-                 fill="#bbf7d0"
-                 stroke="#16a34a"
-                 stroke-width="4"/>
-
-        <text x="300" y="166"
-              text-anchor="middle"
-              font-size="20"
-              font-weight="bold">
-            Green Leaf 🌿
-        </text>
-
-        <text x="300" y="205"
-              text-anchor="middle"
-              font-size="16">
-            Chlorophyll
-        </text>
-
-        <line x1="120" y1="250" x2="215" y2="190"
-              stroke="#2563eb"
-              stroke-width="4"
-              marker-end="url(#arrow)"/>
-
-        <text x="105" y="280"
-              text-anchor="middle"
-              font-size="18">
-            Water 💧
-        </text>
-
-        <line x1="480" y1="160" x2="395" y2="160"
-              stroke="#64748b"
-              stroke-width="4"
-              marker-end="url(#arrow)"/>
-
-        <text x="500" y="135"
-              text-anchor="middle"
-              font-size="17">
-            CO₂
-        </text>
-
-        <line x1="395" y1="195" x2="500" y2="245"
-              stroke="#16a34a"
-              stroke-width="4"
-              marker-end="url(#arrow)"/>
-
-        <text x="500" y="275"
-              text-anchor="middle"
-              font-size="17">
-            Oxygen O₂
-        </text>
-
-        <defs>
-            <marker id="arrow"
-                    markerWidth="10"
-                    markerHeight="10"
-                    refX="8"
-                    refY="3"
-                    orient="auto">
-                <polygon points="0 0, 10 3, 0 6"
-                         fill="#64748b"/>
-            </marker>
-        </defs>
-    </svg>
-
-    <p>
-        <strong>
-            Photosynthesis uses sunlight, water and carbon dioxide to help
-            green plants make food and release oxygen.
-        </strong>
-    </p>
-</div>
-
-<h4>🌱 Photosynthesis</h4>
-                <p>
-                    Photosynthesis is the process by which green plants make
-                    their own food using sunlight, water, and carbon dioxide.
-                </p>
-
-                <h4>☀️ What Plants Need</h4>
-                <ul>
-                    <li>Sunlight</li>
-                    <li>Water</li>
-                    <li>Carbon dioxide</li>
-                    <li>Chlorophyll</li>
-                </ul>
-
-                <h4>✏️ Example</h4>
-                <p>
-                    A plant placed in sunlight can use light energy to help
-                    produce food in its leaves.
-                </p>
-
-                <h4>🧠 Practice</h4>
-                <p>
-                    Which gas do green plants take in during photosynthesis?
-                </p>
-
-                <button class="practice-button"
-                    onclick="alert('Answer: Carbon dioxide (CO₂)')">
-                    ✅ Show Answer
-                </button>
-            </div>
-        `;
-    } else if (subject === "Social Studies") {
-        message.innerHTML = `
-            <div class="subject-content">
-                <h3>🌍 Social Studies</h3>
-
-                
-<div class="social-diagram">
-    <h4>🌍 Community Diagram</h4>
-
-    <svg viewBox="0 0 600 360" role="img"
-         aria-label="Community diagram showing people, school, health centre and environment">
-
-        <circle cx="300" cy="180" r="75"
-                fill="#dbeafe"
-                stroke="#2563eb"
-                stroke-width="4"/>
-
-        <text x="300" y="175"
-              text-anchor="middle"
-              font-size="22"
-              font-weight="bold">
-            🏘️ Community
-        </text>
-
-        <text x="300" y="202"
-              text-anchor="middle"
-              font-size="16">
-            People working together
-        </text>
-
-        <rect x="35" y="45" width="150" height="75" rx="15"
-              fill="#dcfce7"
-              stroke="#16a34a"
-              stroke-width="3"/>
-
-        <text x="110" y="80"
-              text-anchor="middle"
-              font-size="18"
-              font-weight="bold">
-            🏫 School
-        </text>
-
-        <text x="110" y="103"
-              text-anchor="middle"
-              font-size="14">
-            Education
-        </text>
-
-        <rect x="415" y="45" width="150" height="75" rx="15"
-              fill="#fee2e2"
-              stroke="#dc2626"
-              stroke-width="3"/>
-
-        <text x="490" y="80"
-              text-anchor="middle"
-              font-size="18"
-              font-weight="bold">
-            🏥 Health Centre
-        </text>
-
-        <text x="490" y="103"
-              text-anchor="middle"
-              font-size="14">
-            Healthcare
-        </text>
-
-        <rect x="35" y="245" width="150" height="75" rx="15"
-              fill="#fef3c7"
-              stroke="#ca8a04"
-              stroke-width="3"/>
-
-        <text x="110" y="280"
-              text-anchor="middle"
-              font-size="18"
-              font-weight="bold">
-            🌳 Environment
-        </text>
-
-        <text x="110" y="303"
-              text-anchor="middle"
-              font-size="14">
-            Clean surroundings
-        </text>
-
-        <rect x="415" y="245" width="150" height="75" rx="15"
-              fill="#f3e8ff"
-              stroke="#9333ea"
-              stroke-width="3"/>
-
-        <text x="490" y="280"
-              text-anchor="middle"
-              font-size="18"
-              font-weight="bold">
-            🤝 People
-        </text>
-
-        <text x="490" y="303"
-              text-anchor="middle"
-              font-size="14">
-            Responsibilities
-        </text>
-
-        <line x1="185" y1="100" x2="235" y2="145"
-              stroke="#64748b" stroke-width="3"/>
-
-        <line x1="415" y1="100" x2="365" y2="145"
-              stroke="#64748b" stroke-width="3"/>
-
-        <line x1="185" y1="280" x2="235" y2="215"
-              stroke="#64748b" stroke-width="3"/>
-
-        <line x1="415" y1="280" x2="365" y2="215"
-              stroke="#64748b" stroke-width="3"/>
-    </svg>
-</div>
-
-<h4>🏘️ The Community</h4>
-                <p>
-                    A community is a group of people who live in the same
-                    area and share common facilities, activities, and
-                    responsibilities.
-                </p>
-
-                <h4>🤝 Responsibilities of Community Members</h4>
-                <ul>
-                    <li>Keeping the environment clean</li>
-                    <li>Respecting other people</li>
-                    <li>Protecting public property</li>
-                    <li>Following community rules</li>
-                </ul>
-
-                <h4>✏️ Example</h4>
-                <p>
-                    People can help their community by keeping public places
-                    clean and taking care of shared facilities.
-                </p>
-
-                <h4>🧠 Practice</h4>
-                <p>
-                    Give one responsibility of a good community member.
-                </p>
-
-                <button class="practice-button"
-                    onclick="alert('Answer: One example is keeping the community clean.')">
-                    ✅ Show Answer
-                </button>
-            </div>
-        `;
-    } else if (subject === "Computing") {
-        message.innerHTML = `
-            <div class="subject-content">
-                <h3>💻 Programming Basics</h3>
-
-                
-<div class="programming-diagram">
-    <h4>💻 How Programming Works</h4>
-
-    <svg viewBox="0 0 700 220" role="img"
-         aria-label="Programming flow diagram">
-
-        <rect x="20" y="70" width="140" height="80" rx="15"
-              fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
-
-        <text x="90" y="105"
-              text-anchor="middle"
-              font-size="18"
-              font-weight="bold">
-            💡 Idea
-        </text>
-
-        <text x="90" y="130"
-              text-anchor="middle"
-              font-size="14">
-            Think of a task
-        </text>
-
-        <line x1="165" y1="110" x2="235" y2="110"
-              stroke="#64748b" stroke-width="4"
-              marker-end="url(#programArrow)"/>
-
-        <rect x="240" y="70" width="140" height="80" rx="15"
-              fill="#dcfce7" stroke="#16a34a" stroke-width="3"/>
-
-        <text x="310" y="105"
-              text-anchor="middle"
-              font-size="18"
-              font-weight="bold">
-            🧑‍💻 Code
-        </text>
-
-        <text x="310" y="130"
-              text-anchor="middle"
-              font-size="14">
-            Write instructions
-        </text>
-
-        <line x1="385" y1="110" x2="455" y2="110"
-              stroke="#64748b" stroke-width="4"
-              marker-end="url(#programArrow)"/>
-
-        <rect x="460" y="70" width="100" height="80" rx="15"
-              fill="#fef3c7" stroke="#ca8a04" stroke-width="3"/>
-
-        <text x="510" y="105"
-              text-anchor="middle"
-              font-size="18"
-              font-weight="bold">
-            ▶ Run
-        </text>
-
-        <text x="510" y="130"
-              text-anchor="middle"
-              font-size="14">
-            Execute code
-        </text>
-
-        <line x1="565" y1="110" x2="635" y2="110"
-              stroke="#64748b" stroke-width="4"
-              marker-end="url(#programArrow)"/>
-
-        <rect x="610" y="70" width="80" height="80" rx="15"
-              fill="#f3e8ff" stroke="#9333ea" stroke-width="3"/>
-
-        <text x="650" y="105"
-              text-anchor="middle"
-              font-size="17"
-              font-weight="bold">
-            📱
-        </text>
-
-        <text x="650" y="130"
-              text-anchor="middle"
-              font-size="14">
-            Output
-        </text>
-
-        <defs>
-            <marker id="programArrow"
-                    markerWidth="10"
-                    markerHeight="10"
-                    refX="8"
-                    refY="3"
-                    orient="auto">
-                <polygon points="0 0, 10 3, 0 6"
-                         fill="#64748b"/>
-            </marker>
-        </defs>
-    </svg>
-</div>
-
-<h4>🧠 What Is Programming?</h4>
-                <p>
-                    Programming is the process of writing instructions that
-                    tell a computer what to do.
-                </p>
-
-                <h4>🧩 What Is Code?</h4>
-                <p>
-                    Code is a set of instructions written in a programming
-                    language. Computers follow these instructions to perform
-                    tasks.
-                </p>
-
-                <h4>🐍 Simple Python Example</h4>
-
-                <pre><code>name = "Adams"
-print("Hello", name)</code></pre>
-
-                <p>
-                    This program stores a name in a variable and then prints
-                    a greeting.
-                </p>
-
-                <h4>✏️ Example</h4>
-                <p>
-                    If we write
-                    <strong>age = 13</strong>,
-                    the variable <strong>age</strong> stores the number 13.
-                </p>
-
-                <h4>🧠 Practice</h4>
-                <p>
-                    Which Python command is commonly used to display text
-                    on the screen?
-                </p>
-
-                <button class="practice-button"
-                    onclick="alert('Answer: print()')">
-                    ✅ Show Answer
-                </button>
-            </div>
-        `;
-    } else {
-        message.innerHTML =
-            "📚 " + subject + " materials are coming soon!";
-    }
-}
-</script>
-
-</body>
-</html>
-
-<script>
-let score = 0;
-let highScore = Number(localStorage.getItem("mathHighScore")) || 0;
-let time = 30;
-let lives = 3;
-let timer;
-let num1;
-let num2;
-let operator;
-let correctAnswer;
-let gameRunning = false;
-
-document.getElementById("highScore").textContent = highScore;
-
-function startGame() {
-    clearInterval(timer);
-
-    score = 0;
-    time = 30;
-    lives = 3;
-    gameRunning = true;
-
-    document.getElementById("score").textContent = score;
-    document.getElementById("time").textContent = time;
-    document.getElementById("lives").textContent = "❤️❤️❤️";
-    document.getElementById("result").textContent = "";
-
-    document.getElementById("answer").value = "";
-    document.getElementById("answer").focus();
-
-    newQuestion();
-
-    timer = setInterval(function () {
-        time--;
-        document.getElementById("time").textContent = time;
-
-        if (time <= 0) {
-            endGame();
-        }
-    }, 1000);
-}
-
-function newQuestion() {
-    num1 = Math.floor(Math.random() * 20) + 1;
-    num2 = Math.floor(Math.random() * 20) + 1;
-
-    const operators = ["+", "-", "×"];
-    operator = operators[Math.floor(Math.random() * operators.length)];
-
-    if (operator === "+") {
-        correctAnswer = num1 + num2;
-    } else if (operator === "-") {
-        correctAnswer = num1 - num2;
-    } else {
-        correctAnswer = num1 * num2;
-    }
-
-    document.getElementById("question").textContent =
-        num1 + " " + operator + " " + num2 + " = ?";
-}
-
-function checkAnswer() {
-    if (!gameRunning) {
-        document.getElementById("result").textContent =
-            "Press Start Game first!";
-        return;
-    }
-
-    const answerBox = document.getElementById("answer");
-    const userAnswer = Number(answerBox.value);
-
-    if (answerBox.value === "") {
-        document.getElementById("result").textContent =
-            "Enter an answer first.";
-        return;
-    }
-
-    if (userAnswer === correctAnswer) {
-        score++;
-        document.getElementById("score").textContent = score;
-        document.getElementById("result").textContent = "✅ Correct!";
-        newQuestion();
-    } else {
-        lives--;
-
-        let hearts = "";
-        for (let i = 0; i < lives; i++) {
-            hearts += "❤️";
-        }
-
-        document.getElementById("lives").textContent = hearts || "💔";
-
-        if (lives <= 0) {
-            endGame();
-            return;
-        }
-
-        document.getElementById("result").textContent =
-            "❌ Wrong! Try the next one.";
-
-        newQuestion();
-    }
-
-    answerBox.value = "";
-    answerBox.focus();
-}
-
-function endGame() {
-    clearInterval(timer);
-    gameRunning = false;
-
-    if (score > highScore) {
-        highScore = score;
-        localStorage.setItem("mathHighScore", highScore);
-        document.getElementById("highScore").textContent = highScore;
-
-        document.getElementById("result").textContent =
-            "🏆 New high score! You scored " + score + "!";
-    } else {
-        document.getElementById("result").textContent =
-            "🎮 Game over! Your score: " + score;
-    }
-
-    document.getElementById("question").textContent =
-        "Press Start Game to play again!";
-}
-</script>
-
+    <section>
+        <h2>🏠
