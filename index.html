@@ -235,6 +235,69 @@
         font-size: 15px;
     }
 
+
+    .math-diagram {
+        margin: 20px 0;
+        padding: 15px;
+        background: #f8fafc;
+        border-radius: 12px;
+        text-align: center;
+    }
+
+    .math-diagram svg {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+    }
+
+
+    .science-diagram {
+        margin: 20px 0;
+        padding: 15px;
+        background: #f0fdf4;
+        border-radius: 12px;
+        text-align: center;
+    }
+
+    .science-diagram svg {
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+    }
+
+
+    .programming-diagram {
+        margin: 20px 0;
+        padding: 15px;
+        background: #f8fafc;
+        border-radius: 12px;
+        text-align: center;
+        overflow-x: auto;
+    }
+
+    .programming-diagram svg {
+        width: 100%;
+        min-width: 600px;
+        max-width: 700px;
+        height: auto;
+    }
+
+
+    .social-diagram {
+        margin: 20px 0;
+        padding: 15px;
+        background: #f8fafc;
+        border-radius: 12px;
+        text-align: center;
+        overflow-x: auto;
+    }
+
+    .social-diagram svg {
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+    }
+
 </style>
 
 </style>
@@ -433,7 +496,47 @@ function showSubject(subject) {
             <div class="subject-content">
                 <h3>➗ Mathematics</h3>
 
-                <h4>📐 Useful Formula</h4>
+                
+<div class="math-diagram">
+    <h4>📐 Triangle Area Diagram</h4>
+
+    <svg viewBox="0 0 500 300" role="img"
+         aria-label="Triangle showing base and height">
+        <polygon points="100,240 400,240 250,60"
+                 fill="#dbeafe"
+                 stroke="#2563eb"
+                 stroke-width="4"/>
+
+        <line x1="250" y1="60" x2="250" y2="240"
+              stroke="#dc2626"
+              stroke-width="3"
+              stroke-dasharray="8 6"/>
+
+        <text x="250" y="270"
+              text-anchor="middle"
+              font-size="20">
+            Base
+        </text>
+
+        <text x="270" y="155"
+              font-size="20">
+            Height
+        </text>
+
+        <text x="250" y="35"
+              text-anchor="middle"
+              font-size="20"
+              font-weight="bold">
+            Triangle
+        </text>
+    </svg>
+
+    <p>
+        <strong>Area = ½ × base × height</strong>
+    </p>
+</div>
+
+<h4>📐 Useful Formula</h4>
                 <p><strong>Area of a rectangle = length × width</strong></p>
 
                 <h4>✏️ Example</h4>
@@ -507,7 +610,102 @@ function showSubject(subject) {
             <div class="subject-content">
                 <h3>🔬 Integrated Science</h3>
 
-                <h4>🌱 Photosynthesis</h4>
+                
+<div class="science-diagram">
+    <h4>🌱 Photosynthesis Diagram</h4>
+
+    <svg viewBox="0 0 600 330" role="img"
+         aria-label="Photosynthesis diagram showing sunlight, water, carbon dioxide, food and oxygen">
+
+        <circle cx="90" cy="70" r="38"
+                fill="#facc15"
+                stroke="#ca8a04"
+                stroke-width="3"/>
+
+        <text x="90" y="125"
+              text-anchor="middle"
+              font-size="18">
+            Sunlight ☀️
+        </text>
+
+        <line x1="125" y1="80" x2="225" y2="130"
+              stroke="#ca8a04"
+              stroke-width="4"
+              marker-end="url(#arrow)"/>
+
+        <ellipse cx="300" cy="160" rx="90" ry="55"
+                 fill="#bbf7d0"
+                 stroke="#16a34a"
+                 stroke-width="4"/>
+
+        <text x="300" y="166"
+              text-anchor="middle"
+              font-size="20"
+              font-weight="bold">
+            Green Leaf 🌿
+        </text>
+
+        <text x="300" y="205"
+              text-anchor="middle"
+              font-size="16">
+            Chlorophyll
+        </text>
+
+        <line x1="120" y1="250" x2="215" y2="190"
+              stroke="#2563eb"
+              stroke-width="4"
+              marker-end="url(#arrow)"/>
+
+        <text x="105" y="280"
+              text-anchor="middle"
+              font-size="18">
+            Water 💧
+        </text>
+
+        <line x1="480" y1="160" x2="395" y2="160"
+              stroke="#64748b"
+              stroke-width="4"
+              marker-end="url(#arrow)"/>
+
+        <text x="500" y="135"
+              text-anchor="middle"
+              font-size="17">
+            CO₂
+        </text>
+
+        <line x1="395" y1="195" x2="500" y2="245"
+              stroke="#16a34a"
+              stroke-width="4"
+              marker-end="url(#arrow)"/>
+
+        <text x="500" y="275"
+              text-anchor="middle"
+              font-size="17">
+            Oxygen O₂
+        </text>
+
+        <defs>
+            <marker id="arrow"
+                    markerWidth="10"
+                    markerHeight="10"
+                    refX="8"
+                    refY="3"
+                    orient="auto">
+                <polygon points="0 0, 10 3, 0 6"
+                         fill="#64748b"/>
+            </marker>
+        </defs>
+    </svg>
+
+    <p>
+        <strong>
+            Photosynthesis uses sunlight, water and carbon dioxide to help
+            green plants make food and release oxygen.
+        </strong>
+    </p>
+</div>
+
+<h4>🌱 Photosynthesis</h4>
                 <p>
                     Photosynthesis is the process by which green plants make
                     their own food using sunlight, water, and carbon dioxide.
@@ -543,7 +741,118 @@ function showSubject(subject) {
             <div class="subject-content">
                 <h3>🌍 Social Studies</h3>
 
-                <h4>🏘️ The Community</h4>
+                
+<div class="social-diagram">
+    <h4>🌍 Community Diagram</h4>
+
+    <svg viewBox="0 0 600 360" role="img"
+         aria-label="Community diagram showing people, school, health centre and environment">
+
+        <circle cx="300" cy="180" r="75"
+                fill="#dbeafe"
+                stroke="#2563eb"
+                stroke-width="4"/>
+
+        <text x="300" y="175"
+              text-anchor="middle"
+              font-size="22"
+              font-weight="bold">
+            🏘️ Community
+        </text>
+
+        <text x="300" y="202"
+              text-anchor="middle"
+              font-size="16">
+            People working together
+        </text>
+
+        <rect x="35" y="45" width="150" height="75" rx="15"
+              fill="#dcfce7"
+              stroke="#16a34a"
+              stroke-width="3"/>
+
+        <text x="110" y="80"
+              text-anchor="middle"
+              font-size="18"
+              font-weight="bold">
+            🏫 School
+        </text>
+
+        <text x="110" y="103"
+              text-anchor="middle"
+              font-size="14">
+            Education
+        </text>
+
+        <rect x="415" y="45" width="150" height="75" rx="15"
+              fill="#fee2e2"
+              stroke="#dc2626"
+              stroke-width="3"/>
+
+        <text x="490" y="80"
+              text-anchor="middle"
+              font-size="18"
+              font-weight="bold">
+            🏥 Health Centre
+        </text>
+
+        <text x="490" y="103"
+              text-anchor="middle"
+              font-size="14">
+            Healthcare
+        </text>
+
+        <rect x="35" y="245" width="150" height="75" rx="15"
+              fill="#fef3c7"
+              stroke="#ca8a04"
+              stroke-width="3"/>
+
+        <text x="110" y="280"
+              text-anchor="middle"
+              font-size="18"
+              font-weight="bold">
+            🌳 Environment
+        </text>
+
+        <text x="110" y="303"
+              text-anchor="middle"
+              font-size="14">
+            Clean surroundings
+        </text>
+
+        <rect x="415" y="245" width="150" height="75" rx="15"
+              fill="#f3e8ff"
+              stroke="#9333ea"
+              stroke-width="3"/>
+
+        <text x="490" y="280"
+              text-anchor="middle"
+              font-size="18"
+              font-weight="bold">
+            🤝 People
+        </text>
+
+        <text x="490" y="303"
+              text-anchor="middle"
+              font-size="14">
+            Responsibilities
+        </text>
+
+        <line x1="185" y1="100" x2="235" y2="145"
+              stroke="#64748b" stroke-width="3"/>
+
+        <line x1="415" y1="100" x2="365" y2="145"
+              stroke="#64748b" stroke-width="3"/>
+
+        <line x1="185" y1="280" x2="235" y2="215"
+              stroke="#64748b" stroke-width="3"/>
+
+        <line x1="415" y1="280" x2="365" y2="215"
+              stroke="#64748b" stroke-width="3"/>
+    </svg>
+</div>
+
+<h4>🏘️ The Community</h4>
                 <p>
                     A community is a group of people who live in the same
                     area and share common facilities, activities, and
@@ -580,7 +889,104 @@ function showSubject(subject) {
             <div class="subject-content">
                 <h3>💻 Programming Basics</h3>
 
-                <h4>🧠 What Is Programming?</h4>
+                
+<div class="programming-diagram">
+    <h4>💻 How Programming Works</h4>
+
+    <svg viewBox="0 0 700 220" role="img"
+         aria-label="Programming flow diagram">
+
+        <rect x="20" y="70" width="140" height="80" rx="15"
+              fill="#dbeafe" stroke="#2563eb" stroke-width="3"/>
+
+        <text x="90" y="105"
+              text-anchor="middle"
+              font-size="18"
+              font-weight="bold">
+            💡 Idea
+        </text>
+
+        <text x="90" y="130"
+              text-anchor="middle"
+              font-size="14">
+            Think of a task
+        </text>
+
+        <line x1="165" y1="110" x2="235" y2="110"
+              stroke="#64748b" stroke-width="4"
+              marker-end="url(#programArrow)"/>
+
+        <rect x="240" y="70" width="140" height="80" rx="15"
+              fill="#dcfce7" stroke="#16a34a" stroke-width="3"/>
+
+        <text x="310" y="105"
+              text-anchor="middle"
+              font-size="18"
+              font-weight="bold">
+            🧑‍💻 Code
+        </text>
+
+        <text x="310" y="130"
+              text-anchor="middle"
+              font-size="14">
+            Write instructions
+        </text>
+
+        <line x1="385" y1="110" x2="455" y2="110"
+              stroke="#64748b" stroke-width="4"
+              marker-end="url(#programArrow)"/>
+
+        <rect x="460" y="70" width="100" height="80" rx="15"
+              fill="#fef3c7" stroke="#ca8a04" stroke-width="3"/>
+
+        <text x="510" y="105"
+              text-anchor="middle"
+              font-size="18"
+              font-weight="bold">
+            ▶ Run
+        </text>
+
+        <text x="510" y="130"
+              text-anchor="middle"
+              font-size="14">
+            Execute code
+        </text>
+
+        <line x1="565" y1="110" x2="635" y2="110"
+              stroke="#64748b" stroke-width="4"
+              marker-end="url(#programArrow)"/>
+
+        <rect x="610" y="70" width="80" height="80" rx="15"
+              fill="#f3e8ff" stroke="#9333ea" stroke-width="3"/>
+
+        <text x="650" y="105"
+              text-anchor="middle"
+              font-size="17"
+              font-weight="bold">
+            📱
+        </text>
+
+        <text x="650" y="130"
+              text-anchor="middle"
+              font-size="14">
+            Output
+        </text>
+
+        <defs>
+            <marker id="programArrow"
+                    markerWidth="10"
+                    markerHeight="10"
+                    refX="8"
+                    refY="3"
+                    orient="auto">
+                <polygon points="0 0, 10 3, 0 6"
+                         fill="#64748b"/>
+            </marker>
+        </defs>
+    </svg>
+</div>
+
+<h4>🧠 What Is Programming?</h4>
                 <p>
                     Programming is the process of writing instructions that
                     tell a computer what to do.
