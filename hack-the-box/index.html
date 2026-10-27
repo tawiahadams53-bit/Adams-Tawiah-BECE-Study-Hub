@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hack the Box | Adams Cyber Web</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;padding:24px 16px;
+  background:#090611;color:#eee8ff;
+  font-family:monospace;text-align:center
+}
+main{max-width:650px;margin:30px auto}
+h1{color:#c084fc;text-shadow:0 0 15px #8b5cf6}
+.panel{
+  background:#160e24;border:1px solid #7042a0;
+  border-radius:14px;padding:22px;margin:18px 0
+}
+.box{font-size:65px;margin:15px}
+button,input{
+  padding:12px;border-radius:8px;border:1px solid #9865cf;
+  font:inherit;margin:6px
+}
+button{background:#7c3aed;color:white;cursor:pointer}
+input{background:#0b0712;color:white;width:min(230px,90%)}
+#message{color:#d8b4fe;min-height:45px;white-space:pre-wrap}
+a{color:#c084fc}
+</style>
+</head>
+<body>
+<main>
+  <h1>HACK THE ☑️🎁 BOX</h1>
+  <p>ADAMS CYBER WEB // TRAINING SIMULATION</p>
+
+  <section class="panel">
+    <div class="box">🔐</div>
+    <h2>LEVEL 01 — THE SECRET CODE</h2>
+    <p>A digital box is locked. Solve the clue to open it.</p>
+    <p><strong>CLUE:</strong> I am the number of days in one week.</p>
+    <input id="answer" placeholder="Enter the code" inputmode="numeric">
+    <br>
+    <button id="unlock">UNLOCK BOX</button>
+    <p id="message" aria-live="polite"></p>
+  </section>
+
+  <section class="panel">
+    <h3>MISSION LOG</h3>
+    <p id="status">Status: Waiting for your first attempt.</p>
+    <p>Rules: solve the puzzle; no real accounts or systems are involved.</p>
+  </section>
+
+  <p><a href="../">← Return to Adams Cyber Web</a></p>
+</main>
+<script>
+const answer=document.getElementById('answer');
+const message=document.getElementById('message');
+const status=document.getElementById('status');
+
+document.getElementById('unlock').addEventListener('click',()=>{
+  if(answer.value.trim()==='7'){
+    message.textContent='ACCESS GRANTED! 🎁\\nYou solved the first challenge.';
+    status.textContent='Status: Level 01 complete.';
+    document.querySelector('.box').textContent='📦';
+  }else{
+    message.textContent='ACCESS DENIED. Re-read the clue and try again.';
+    status.textContent='Status: Puzzle still locked.';
+  }
+});
+answer.addEventListener('keydown',event=>{
+  if(event.key==='Enter')document.getElementById('unlock').click();
+});
+</script>
+</body>
+</html>

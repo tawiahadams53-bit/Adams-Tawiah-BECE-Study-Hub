@@ -1,0 +1,264 @@
+from pathlib import Path
+import shutil
+
+page = r'''<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090510">
+<title>ADAMS CYBER WEB</title>
+<style>
+:root{color-scheme:dark;--bg:#090510;--panel:#140c20;--line:#49216d;--purple:#a855f7;--light:#e9d5ff;--muted:#b8a5cc;--green:#86efac}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at top,#211035 0%,var(--bg) 55%);color:#f5edff;font:15px Arial,sans-serif;min-height:100vh}
+header{padding:22px 16px 14px;text-align:center;border-bottom:1px solid var(--line);background:#0b0613}
+.brand{font-size:clamp(22px,5vw,36px);letter-spacing:2px;color:var(--light);text-shadow:0 0 18px #9333ea;font-weight:900}
+.subtitle{color:var(--muted);font-size:11px;letter-spacing:2px;margin-top:8px}
+.status{color:var(--green);font-size:11px;margin-top:12px}
+nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:14px}
+nav a,.btn{color:var(--light);text-decoration:none;border:1px solid var(--line);border-radius:9px;background:#190e29;padding:10px 13px;cursor:pointer;font-size:13px}
+nav a:hover,.btn:hover{border-color:var(--purple);box-shadow:0 0 12px #9333ea55}
+main{max-width:1000px;margin:auto;padding:18px 14px 90px}
+h2{font-size:20px;color:var(--light);margin:0 0 8px}
+h3{font-size:15px;color:#d8b4fe}
+p,.hint{color:var(--muted);line-height:1.55;font-size:13px}
+.hero,.panel,.tool{background:linear-gradient(145deg,#170d25,#0e0918);border:1px solid var(--line);border-radius:15px;padding:18px;margin-bottom:16px}
+.hero{box-shadow:0 0 25px #7e22ce18}
+.eyebrow{color:#c084fc;font-size:11px;letter-spacing:2px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.tool{margin:0;display:block;text-decoration:none;color:inherit;min-height:130px}
+.tool strong{display:block;color:var(--light);margin:10px 0 5px}
+.tool span{font-size:24px;color:#c084fc}
+section{scroll-margin-top:12px;margin-top:25px}
+textarea,input,select{width:100%;background:#090510;color:#f5edff;border:1px solid #553071;border-radius:8px;padding:11px;margin:7px 0;font:13px monospace}
+textarea{min-height:105px;resize:vertical}
+button{font-family:inherit}
+.output{white-space:pre-wrap;overflow-wrap:anywhere;background:#08050e;border:1px solid #38204b;border-radius:8px;padding:12px;min-height:42px;color:var(--green);font:13px monospace;margin-top:10px}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row .btn{margin-top:4px}
+small{color:var(--muted)}
+footer{text-align:center;color:var(--muted);font-size:11px;padding:20px}
+#orb{position:fixed;right:16px;bottom:22px;width:60px;height:60px;border:2px solid #d8b4fe;border-radius:50%;background:radial-gradient(circle at 30% 25%,#d8b4fe,#7e22ce 55%,#240c42);box-shadow:0 0 16px #a855f7,0 0 35px #7e22ce77;display:grid;place-items:center;font-size:25px;z-index:99;touch-action:none;user-select:none}
+#menu{display:none;position:fixed;right:16px;bottom:92px;width:210px;background:#12091e;border:1px solid var(--purple);border-radius:14px;padding:12px;z-index:98;box-shadow:0 0 25px #9333ea66}
+#menu.open{display:grid;gap:8px}
+#menu a{color:var(--light);text-decoration:none;background:#211032;padding:10px;border-radius:7px;font-size:13px}
+@media(min-width:700px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{padding:26px}}
+@media(prefers-reduced-motion:no-preference){.brand{animation:glow 4s ease-in-out infinite alternate}@keyframes glow{to{text-shadow:0 0 25px #a855f7}}}
+</style>
+</head>
+<body>
+<header id="home">
+  <div class="brand">ADAMS CYBER WEB</div>
+  <div class="subtitle">CYBERSPACE • LEARN • BUILD • EXPLORE</div>
+  <div class="status">● SYSTEM ONLINE — LOCAL INTERFACE</div>
+</header>
+<nav>
+  <a href="#home">HOME</a><a href="#terminal">TERMINAL</a>
+  <a href="#security">SECURITY LAB</a><a href="#encoding">ENCODING LAB</a>
+  <a href="#code">CODE LAB</a>
+</nav>
+<main>
+  <div class="hero">
+    <div class="eyebrow">WELCOME TO YOUR DIGITAL WORKSPACE</div>
+    <h2 style="font-size:26px;margin-top:12px">Think. Code. Secure.</h2>
+    <p>A lightweight cyber-themed workspace for learning programming, exploring security concepts, and building experiments.</p>
+    <div class="row">
+      <a class="btn" href="#terminal">Open Terminal</a>
+      <a class="btn" href="#security">Explore Security</a>
+    </div>
+  </div>
+
+  <div class="grid">
+    <a class="tool" href="#terminal"><span>⌘</span><strong>Cyber Terminal</strong><small>Interactive demo commands</small></a>
+    <a class="tool" href="#security"><span>⬡</span><strong>Security Lab</strong><small>Password and URL checks</small></a>
+    <a class="tool" href="#encoding"><span>⟨⟩</span><strong>Encoding Lab</strong><small>Base64 and SHA-256</small></a>
+    <a class="tool" href="#code"><span>⌨</span><strong>Code Lab</strong><small>Write and preview HTML</small></a>
+    <a class="tool" href="./nano/"><span>▣</span><strong>NANO Terminal</strong><small>Open your existing project</small></a>
+    <a class="tool" href="./nova-command-center/"><span>✦</span><strong>NOVA Command Center</strong><small>Open your existing NOVA page</small></a>
+    <a class="tool" href="./hack-the-box/"><span>🎁</span><strong>HACK THE BOX</strong><small>Solve puzzles and unlock the box</small></a>
+  </div>
+
+  <section id="terminal">
+    <div class="panel">
+      <h2>⌘ Cyber Terminal</h2>
+      <p>Type <b>help</b> to see commands. The scan command is a simulation and does not scan real devices.</p>
+      <input id="command" placeholder="Enter command, e.g. help" autocomplete="off">
+      <button class="btn" id="run">EXECUTE</button>
+      <button class="btn" id="clear">CLEAR</button>
+      <div class="output" id="terminalOut">ADAMS CYBER WEB [Version 1.0]
+Demo terminal ready.
+Type help to begin.</div>
+    </div>
+  </section>
+
+  <section id="security">
+    <div class="panel">
+      <h2>⬡ Security Lab</h2>
+      <h3>Password strength estimate</h3>
+      <p>Checked locally in your browser. Do not enter a real password; try a made-up example.</p>
+      <input id="password" type="password" placeholder="Try a sample password" autocomplete="off">
+      <button class="btn" id="checkPass">CHECK SAMPLE</button>
+      <div class="output" id="passOut">Waiting for sample input.</div>
+      <h3>URL awareness check</h3>
+      <p>Basic warning signs only. This cannot prove a site is safe or malicious.</p>
+      <input id="url" placeholder="https://example.com">
+      <button class="btn" id="checkUrl">CHECK URL TEXT</button>
+      <div class="output" id="urlOut">No URL checked.</div>
+    </div>
+  </section>
+
+  <section id="encoding">
+    <div class="panel">
+      <h2>⟨⟩ Encoding Lab</h2>
+      <p>Base64 is encoding, not encryption. Don't use it to protect secrets.</p>
+      <textarea id="baseInput" placeholder="Enter text to encode or Base64 text to decode"></textarea>
+      <div class="row">
+        <button class="btn" id="encode">ENCODE BASE64</button>
+        <button class="btn" id="decode">DECODE BASE64</button>
+        <button class="btn" id="hash">SHA-256 HASH</button>
+      </div>
+      <div class="output" id="encodingOut">Output will appear here.</div>
+    </div>
+  </section>
+
+  <section id="code">
+    <div class="panel">
+      <h2>⌨ Code Lab</h2>
+      <p>Write HTML and preview it in an isolated frame. The preview is local to this page.</p>
+      <h3>Python Mini Program</h3>
+      <p>Try editing this small Python example.</p>
+      <textarea id="pythonCode" spellcheck="false">name = "Adams"
+print("Welcome to Adams Cyber Web, " + name)
+print("Python mode: ready")</textarea>
+      <button class="btn" id="showPython">SHOW PYTHON CODE</button>
+      <pre class="output" id="pythonOut">Python example ready.</pre>
+      <textarea id="codeInput" spellcheck="false"><h1 style="color:#c084fc">Hello, Adams!</h1>
+<p>My first cyber web experiment.</p>
+<button onclick="document.body.style.background='#201033'">Activate purple mode</button></textarea>
+      <button class="btn" id="preview">RUN HTML PREVIEW</button>
+      <iframe id="previewFrame" title="Code preview" sandbox="allow-scripts" style="width:100%;height:220px;background:#fff;border:1px solid #553071;border-radius:8px;margin-top:12px"></iframe>
+    </div>
+  </section>
+</main>
+<footer>ADAMS CYBER WEB • VERSION 1.0 • BUILT FOR LEARNING</footer>
+
+<div id="orb" role="button" aria-label="Drag or open navigation">✦</div>
+<div id="menu">
+  <a href="#home">⌂ Home</a><a href="#terminal">⌘ Terminal</a>
+  <a href="#security">⬡ Security Lab</a><a href="#encoding">⟨⟩ Encoding Lab</a>
+  <a href="#code">⌨ Code Lab</a><a href="./nano/">NANO Terminal</a>
+  <a href="./nova-command-center/">NOVA</a><a href="./hack-the-box/">HACK THE BOX</a>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+function terminalRun(){
+ const c=$('command').value.trim().toLowerCase();
+ const responses={
+  help:'Available commands: help, about, time, status, scan, clear',
+  about:'ADAMS CYBER WEB — browser-based learning interface.',
+  time:'Your device time: '+new Date().toLocaleString(),
+  status:'Interface: ONLINE\\nMode: LOCAL DEMO\\nReal network scan: NOT RUN',
+  scan:'SIMULATION ONLY\\nNo devices or networks were scanned.\\nDemo result: no real findings available.'
+ };
+ if(c==='clear'){$('terminalOut').textContent='Terminal cleared.';return}
+ $('terminalOut').textContent=responses[c]||'Unknown command. Type help for the command list.';
+}
+$('run').onclick=terminalRun;
+$('command').addEventListener('keydown',e=>{if(e.key==='Enter')terminalRun()});
+$('clear').onclick=()=>$('terminalOut').textContent='Terminal cleared.';
+$('checkPass').onclick=()=>{
+ const p=$('password').value;
+ if(!p){$('passOut').textContent='Enter a made-up sample first.';return}
+ let score=0;
+ if(p.length>=12)score++;
+ if(/[a-z]/.test(p)&&/[A-Z]/.test(p))score++;
+ if(/[0-9]/.test(p))score++;
+ if(/[^A-Za-z0-9]/.test(p))score++;
+ $('passOut').textContent=['Very weak sample — easy to guess','Weak sample','Moderate sample','Stronger sample','Stronger sample'][score]+
+ '\\nLength: '+p.length+' characters. This is a simple estimate, not a guarantee.';
+};
+$('checkUrl').onclick=()=>{
+ const v=$('url').value.trim();let notes=[];
+ try{
+  const u=new URL(v);
+  if(u.protocol!=='https:')notes.push('Not using HTTPS.');
+  if(u.username||u.password)notes.push('Contains text before @ that may be misleading.');
+  if(u.hostname.includes('xn--'))notes.push('Contains an internationalized domain name.');
+  if(/^\\d+\\.\\d+\\.\\d+\\.\\d+$/.test(u.hostname))notes.push('Uses an IP address instead of a usual domain name.');
+  $('urlOut').textContent=(notes.length?notes.join('\\n'):'No basic warning signs detected.')+'\\nThis check cannot verify reputation or safety. Inspect the domain carefully.';
+ }catch(e){$('urlOut').textContent='Enter a complete URL such as https://example.com';}
+};
+$('encode').onclick=()=>{
+ try{$('encodingOut').textContent=btoa(unescape(encodeURIComponent($('baseInput').value)))}
+ catch(e){$('encodingOut').textContent='Could not encode this text.'}
+};
+$('decode').onclick=()=>{
+ try{$('encodingOut').textContent=decodeURIComponent(escape(atob($('baseInput').value.trim())))}
+ catch(e){$('encodingOut').textContent='Invalid Base64 input.'}
+};
+$('hash').onclick=async()=>{
+ if(!crypto.subtle){$('encodingOut').textContent='SHA-256 requires a secure browser context. Try localhost or HTTPS.';return}
+ const data=new TextEncoder().encode($('baseInput').value);
+ const digest=await crypto.subtle.digest('SHA-256',data);
+ $('encodingOut').textContent=Array.from(new Uint8Array(digest),b=>b.toString(16).padStart(2,'0')).join('');
+};
+$('preview').onclick=()=>{
+ $('previewFrame').srcdoc=$('codeInput').value;
+};
+$('preview').click();
+$('showPython').onclick = () => {
+  $('pythonOut').textContent = $('pythonCode').value;
+};
+
+const orb=$('orb'),menu=$('menu');
+let dragging=false,moved=false,sx=0,sy=0,ox=0,oy=0;
+try{const p=JSON.parse(localStorage.getItem('adamsCyberOrb'));if(p){orb.style.left=p.x+'px';orb.style.top=p.y+'px';orb.style.right='auto';orb.style.bottom='auto'}}catch(e){}
+orb.addEventListener('pointerdown',e=>{
+ dragging=true;moved=false;sx=e.clientX;sy=e.clientY;
+ const r=orb.getBoundingClientRect();ox=r.left;oy=r.top;
+ orb.setPointerCapture(e.pointerId);
+});
+orb.addEventListener('pointermove',e=>{
+ if(!dragging)return;
+ const dx=e.clientX-sx,dy=e.clientY-sy;
+ if(Math.abs(dx)+Math.abs(dy)>8)moved=true;
+ if(moved){
+  orb.style.left=Math.max(0,Math.min(innerWidth-orb.offsetWidth,ox+dx))+'px';
+  orb.style.top=Math.max(0,Math.min(innerHeight-orb.offsetHeight,oy+dy))+'px';
+  orb.style.right='auto';orb.style.bottom='auto';
+ }
+});
+orb.addEventListener('pointerup',()=>{
+ dragging=false;
+ if(moved){const r=orb.getBoundingClientRect();try{localStorage.setItem('adamsCyberOrb',JSON.stringify({x:r.left,y:r.top}))}catch(e){}}
+ else menu.classList.toggle('open');
+});
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
+addEventListener('resize',()=>{
+ const r=orb.getBoundingClientRect();
+ orb.style.left=Math.max(0,Math.min(innerWidth-orb.offsetWidth,r.left))+'px';
+ orb.style.top=Math.max(0,Math.min(innerHeight-orb.offsetHeight,r.top))+'px';
+ orb.style.right='auto';orb.style.bottom='auto';
+});
+</script>
+</body>
+</html>'''
+
+target = Path("index.html")
+backup = Path("index.html.before-cyber-web.bak")
+
+if not target.exists():
+    print("ERROR: index.html not found. No changes made.")
+    raise SystemExit(1)
+
+if not backup.exists():
+    shutil.copy2(target, backup)
+    print("Backup created:", backup)
+else:
+    print("Existing backup preserved:", backup)
+
+target.write_text(page, encoding="utf-8")
+print("SUCCESS: ADAMS CYBER WEB homepage created.")
+print("Next: start the local server and test before pushing.")
