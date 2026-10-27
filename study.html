@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BECE Study Materials</title>
+<style>
+body{margin:0;background:#101827;color:#f1f5f9;font-family:Arial,sans-serif;padding:20px;line-height:1.6}
+main{max-width:760px;margin:auto}
+h1,h2{color:#a78bfa}
+.card{background:#1e293b;padding:16px;margin:14px 0;border-radius:12px}
+a,button{color:#c4b5fd}
+button{background:#7c3aed;color:white;border:0;padding:12px 18px;border-radius:8px;font-size:16px}
+li{margin:8px 0}
+</style>
+</head>
+<body>
+<main>
+<a href="./">← Back to BECE Study Hub</a>
+<h1 id="title">BECE Study Materials</h1>
+<p id="intro">Choose a subject from the Study Hub.</p>
+<div id="notes"></div>
+<button onclick="location.href='./'">Back to Home</button>
+</main>
+<script>
+const subjects = {
+"Mathematics": {
+intro:"Understand the basics and practise step by step.",
+sections:[
+["Number operations",["Follow the order of operations: brackets, powers, multiplication or division, then addition or subtraction.","For example: 3 + 4 × 2 = 11 because multiplication comes first."]],
+["Fractions",["For addition or subtraction, use a common denominator.","For multiplication, multiply the numerators together and the denominators together."]],
+["Ratio",["Write ratios in the same order as the quantities given.","Simplify a ratio by dividing each part by the same common factor."]]
+]},
+"English": {
+intro:"Important English Language revision notes.",
+sections:[
+["Parts of speech",["Nouns name people, places, things or ideas.","Verbs express actions or states.","Adjectives describe nouns; adverbs describe verbs, adjectives or other adverbs."]],
+["Subject–verb agreement",["A singular subject usually takes a singular verb: She writes.","A plural subject usually takes a plural verb: They write."]],
+["Tenses",["Present: I write.","Past: I wrote.","Present continuous: I am writing.","Past perfect: I had written."]]
+]},
+"Science": {
+intro:"Integrated Science revision notes.",
+sections:[
+["Ionic bonding",["Electrons are transferred from one atom to another.","Positive and negative ions attract each other."]],
+["Covalent bonding",["Atoms share pairs of electrons.","Covalent bonds commonly form between non-metal atoms."]],
+["Environmental protection",["Reduce pollution, dispose of waste properly and protect water bodies and forests."]]
+]},
+"Social Studies": {
+intro:"Revise people, society and national development.",
+sections:[
+["Gender issues",["Gender issues concern roles, opportunities and treatment of people in society.","Unequal access to education or employment can affect people's development."]],
+["Energy resources in Ghana",["Examples include hydroelectricity, solar energy, crude oil and natural gas.","Responsible use of energy helps conserve resources and protect the environment."]],
+["Environmental care",["Keep surroundings clean, avoid illegal dumping and protect natural resources."]]
+]},
+"ICT": {
+intro:"Computing and programming basics.",
+sections:[
+["Programming",["Programming means giving a computer instructions to perform tasks.","A program may use input, processing and output."]],
+["Algorithms",["An algorithm is a step-by-step method for solving a problem.","A flowchart uses symbols to represent steps and decisions."]],
+["Computer safety",["Use strong passwords, keep them private and avoid suspicious links."]]
+]},
+"RME": {
+intro:"Religious and Moral Education revision notes.",
+sections:[
+["Moral values",["Examples include honesty, respect, kindness, responsibility and fairness."]],
+["Living together",["Respect other people's beliefs, resolve disagreements peacefully and help others."]]
+]}
+};
+const params = new URLSearchParams(location.search);
+const subject = params.get("subject") || "Mathematics";
+const data = subjects[subject] || subjects["Mathematics"];
+document.title = subject + " | BECE Study Materials";
+document.getElementById("title").textContent = subject + " Study Notes";
+document.getElementById("intro").textContent = data.intro;
+document.getElementById("notes").innerHTML = data.sections.map(section =>
+'<section class="card"><h2>'+section[0]+'</h2><ul>'+
+section[1].map(note=>'<li>'+note+'</li>').join('')+
+'</ul></section>'
+).join('');
+</script>
+</body>
+</html>
