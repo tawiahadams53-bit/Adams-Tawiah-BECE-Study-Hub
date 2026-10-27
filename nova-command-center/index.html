@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090713">
+<title>NOVA | AI Command Center</title>
+<style>
+:root {
+  --bg:#090713; --panel:#121020; --line:#302344;
+  --purple:#a855f7; --cyan:#65f5ff; --text:#f3edff;
+  --muted:#a39ab8; --green:#62f5a5;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0; background:
+  radial-gradient(ellipse at 50% 0%,#291345 0%,transparent 48%),
+  var(--bg); color:var(--text);
+  font:14px system-ui,sans-serif; min-height:100vh;
+}
+header {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:18px 5%; border-bottom:1px solid var(--line);
+  background:#090713d9; gap:12px; flex-wrap:wrap;
+}
+.logo { font-size:22px; font-weight:900; letter-spacing:4px; }
+.logo span { color:var(--purple); }
+.status { color:var(--green); font-size:12px; }
+main { max-width:1050px; padding:25px 16px 40px; margin:auto; }
+.eyebrow { color:var(--cyan); letter-spacing:3px; font-size:11px; }
+h1 { font-size:clamp(28px,6vw,48px); margin:8px 0; }
+.subtitle { color:var(--muted); line-height:1.7; }
+.hero { text-align:center; padding:20px 0 28px; }
+.core {
+  width:155px; height:155px; border-radius:50%; margin:22px auto;
+  display:grid; place-items:center; position:relative;
+  border:1px solid #bd83ff;
+  box-shadow:0 0 20px #a855f744,0 0 65px #a855f72a,
+  inset 0 0 28px #a855f733;
+  animation:pulse 3s infinite ease-in-out;
+}
+.core:before,.core:after {
+  content:""; position:absolute; inset:-12px;
+  border:1px solid #a855f766; border-radius:50%;
+  transform:rotateX(65deg);
+}
+.core:after { inset:-23px; transform:rotateY(65deg); }
+.core b { font-size:40px; letter-spacing:5px; color:#d8b4fe; }
+@keyframes pulse {
+  50% { box-shadow:0 0 32px #a855f777,0 0 85px #a855f733; }
+}
+.grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+.panel {
+  background:linear-gradient(145deg,#171326,#0e0b18);
+  border:1px solid var(--line); border-radius:14px;
+  padding:18px; min-width:0;
+}
+.panel h2 { font-size:14px; margin:0 0 15px; letter-spacing:1px; }
+.metric { font-size:25px; font-weight:750; }
+.small { color:var(--muted); font-size:12px; line-height:1.6; }
+.green { color:var(--green); }
+.cyan { color:var(--cyan); }
+.purple { color:#d8b4fe; }
+.actions { display:flex; flex-wrap:wrap; gap:8px; }
+button {
+  background:#211633; border:1px solid #7144a2; color:white;
+  padding:10px 13px; border-radius:8px; cursor:pointer;
+  font:inherit; transition:.2s;
+}
+button:hover { background:#47236a; }
+button:focus-visible,input:focus-visible {
+  outline:2px solid var(--cyan); outline-offset:2px;
+}
+.terminal { margin-top:14px; }
+.terminal-head { color:var(--green); margin-bottom:12px; }
+#output {
+  height:180px; overflow:auto; white-space:pre-wrap;
+  overflow-wrap:anywhere; color:#c4fbd9; line-height:1.7;
+  font:12px ui-monospace,monospace;
+}
+.commandline { display:flex; gap:8px; margin-top:12px; }
+.commandline input {
+  min-width:0; flex:1; background:#080711; color:white;
+  border:1px solid var(--line); border-radius:8px; padding:12px;
+}
+.commandline button { color:var(--cyan); }
+.progress { height:6px; background:#2b2039; border-radius:8px; overflow:hidden; margin:12px 0; }
+#bar { height:100%; width:0%; background:linear-gradient(90deg,var(--purple),var(--cyan)); transition:width .2s; }
+footer { text-align:center; padding:25px; color:var(--muted); font-size:11px; }
+@media(max-width:580px) {
+  .grid { grid-template-columns:1fr; }
+  header { padding:15px; }
+  main { padding:18px 12px; }
+  .panel { padding:15px; }
+  .core { width:130px; height:130px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after { animation:none!important; transition:none!important; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">NO<span>VA</span><div class="small">INTELLIGENCE INTERFACE</div></div>
+  <div class="status">● SYSTEM ONLINE</div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="eyebrow">PERSONAL COMMAND SYSTEM / v1.0</div>
+    <h1>Welcome to NOVA.</h1>
+    <div class="subtitle">Discover. Analyze. Defend.<br>
+    Your interactive introduction to intelligent systems.</div>
+    <div class="core" aria-label="NOVA visual core"><b>N</b></div>
+    <div class="purple">CORE STATUS: <strong>READY</strong></div>
+    <div class="small" id="clock">Initializing clock...</div>
+  </section>
+
+  <section class="grid">
+    <article class="panel">
+      <h2>01 / SYSTEM STATUS</h2>
+      <div class="metric green">OPERATIONAL</div>
+      <p class="small">Interface: <span class="cyan">ACTIVE</span></p>
+      <p class="small">Connection: <span class="cyan">LOCAL DEMO</span></p>
+      <p class="small">AI model: <span class="purple">NOT CONNECTED</span></p>
+    </article>
+
+    <article class="panel">
+      <h2>02 / SECURITY LAB</h2>
+      <div class="metric" id="scanState">STANDBY</div>
+      <p class="small" id="scanText">Run a simulated scan to inspect fictional security checks.</p>
+      <div class="progress"><div id="bar"></div></div>
+      <button id="scanBtn" onclick="runScan()">▶ Run demo scan</button>
+    </article>
+
+    <article class="panel">
+      <h2>03 / QUICK COMMANDS</h2>
+      <p class="small">Choose a command to explore the interface.</p>
+      <div class="actions">
+        <button onclick="runCommand('help')">Help</button>
+        <button onclick="runCommand('about')">About</button>
+        <button onclick="runCommand('time')">Time</button>
+        <button onclick="runCommand('status')">Status</button>
+        <button onclick="runCommand('scan')">Scan</button>
+        <button onclick="runCommand('clear')">Clear</button>
+      </div>
+    </article>
+
+    <article class="panel">
+      <h2>04 / PROJECT DETAILS</h2>
+      <div class="metric purple">NOVA v1.0</div>
+      <p class="small">Built with HTML, CSS and JavaScript.</p>
+      <p class="small">Designed for mobile browsers and low-data use.</p>
+      <p class="small">Purpose: demonstrate interface design, programming logic and cybersecurity awareness.</p>
+    </article>
+  </section>
+
+  <section class="panel terminal">
+    <div class="terminal-head">NOVA TERMINAL — INTERACTIVE MODE</div>
+    <div id="output" role="log" aria-live="polite">NOVA [boot]: Interface initialized.
+NOVA [info]: Local demonstration mode enabled.
+NOVA [ready]: Type "help" to view commands.</div>
+    <form class="commandline" id="commandForm">
+      <input id="commandInput" aria-label="Terminal command"
+        placeholder="Enter command..." autocomplete="off">
+      <button type="submit">EXECUTE</button>
+    </form>
+    <p class="small">Demo only: commands do not access your phone or external systems.</p>
+  </section>
+</main>
+
+<footer>
+  NOVA AI COMMAND CENTER · STUDENT PROJECT · BUILT FOR LEARNING
+</footer>
+
+<script>
+const output = document.getElementById('output');
+
+function log(message) {
+  output.textContent += '\n' + message;
+  output.scrollTop = output.scrollHeight;
+}
+
+function updateClock() {
+  document.getElementById('clock').textContent =
+    'LOCAL TIME: ' + new Date().toLocaleString();
+}
+updateClock();
+setInterval(updateClock, 1000);
+
+function runCommand(raw) {
+  const cmd = raw.trim().toLowerCase();
+  if (!cmd) return;
+  if (cmd === 'clear') {
+    output.textContent = 'NOVA [terminal]: Screen cleared.';
+    return;
+  }
+
+  log('> ' + cmd);
+  switch (cmd) {
+    case 'help':
+      log('Commands: help, about, time, status, scan, clear');
+      break;
+    case 'about':
+      log('NOVA is a student-built interactive web interface.');
+      log('It uses HTML for structure, CSS for design and JavaScript for behavior.');
+      break;
+    case 'time':
+      log(new Date().toLocaleString());
+      break;
+    case 'status':
+      log('Interface: ONLINE | Mode: LOCAL DEMO | AI: NOT CONNECTED');
+      break;
+    case 'scan':
+      log('Starting fictional security demonstration...');
+      runScan();
+      break;
+    default:
+      log('Unknown command. Type "help" to see available commands.');
+  }
+}
+
+document.getElementById('commandForm').addEventListener('submit', event => {
+  event.preventDefault();
+  const input = document.getElementById('commandInput');
+  runCommand(input.value);
+  input.value = '';
+});
+
+let scanning = false;
+function runScan() {
+  if (scanning) return;
+  scanning = true;
+
+  const bar = document.getElementById('bar');
+  const state = document.getElementById('scanState');
+  const detail = document.getElementById('scanText');
+  const button = document.getElementById('scanBtn');
+
+  button.disabled = true;
+  state.textContent = 'SCANNING';
+  detail.textContent = 'Running fictional checks...';
+  bar.style.width = '0%';
+  log('SCAN: Starting simulated checks.');
+
+  let progress = 0;
+  const steps = [
+    'Checking demo login policy...',
+    'Reviewing sample password rules...',
+    'Checking fictional network settings...',
+    'Demo checks complete.'
+  ];
+
+  const timer = setInterval(() => {
+    progress += 25;
+    bar.style.width = progress + '%';
+
+    if (progress < 100) {
+      detail.textContent = steps[progress / 25 - 1];
+    } else {
+      clearInterval(timer);
+      state.textContent = 'COMPLETE';
+      state.className = 'metric green';
+      detail.textContent = 'Demo passed. No real device was scanned.';
+      log('SCAN: 4 fictional checks completed.');
+      log('RESULT: Simulation only; no real security assessment performed.');
+      button.disabled = false;
+      scanning = false;
+    }
+  }, 350);
+}
+</script>
+</body>
+</html>
+
