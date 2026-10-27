@@ -281,6 +281,89 @@
     #athena-input { flex-basis: 100%; }
 }
 
+/* ===== NOVA FUTURISTIC NAVIGATION ===== */
+header nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 12px;
+}
+
+header nav a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    border: 1px solid rgba(168, 85, 247, 0.32);
+    border-radius: 10px;
+    background: linear-gradient(
+        135deg,
+        rgba(168, 85, 247, 0.10),
+        rgba(20, 15, 40, 0.8)
+    );
+    color: #e9d5ff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s ease,
+                box-shadow 0.2s ease,
+                border-color 0.2s ease;
+}
+
+header nav a:hover {
+    transform: translateY(-2px);
+    border-color: #c084fc;
+    box-shadow: 0 0 16px rgba(168, 85, 247, 0.28);
+    color: #ffffff;
+}
+
+/* Highlight the NOVA command center */
+header nav a[href*="nova-command-center"] {
+    border-color: #a855f7;
+    background: linear-gradient(120deg, #7025b8, #35105f);
+    color: #ffffff;
+    box-shadow: 0 0 12px rgba(168, 85, 247, 0.20);
+}
+
+header nav a[href*="nova-command-center"]:hover {
+    box-shadow: 0 0 24px rgba(168, 85, 247, 0.55);
+}
+
+/* Special cyan accent for NANO Terminal */
+header nav a[href*="./nano/"] {
+    border-color: rgba(101, 245, 255, 0.45);
+    color: #8cf8ff;
+}
+
+header nav a[href*="./nano/"]:hover {
+    box-shadow: 0 0 16px rgba(101, 245, 255, 0.25);
+}
+
+@media (max-width: 600px) {
+    header nav {
+        gap: 7px;
+    }
+
+    header nav a {
+        padding: 9px 11px;
+        font-size: 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    header nav a {
+        transition: none;
+    }
+
+    header nav a:hover {
+        transform: none;
+    }
+}
+
 </style>
 </head>
 
